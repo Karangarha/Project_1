@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}User List{% endblock %}
+
+{% block content %}
+    <h2>Users</h2>
+    <h3>User Count: {{ users|length }}</h3>
+
+    {% if users|length == 0 %}
+        <p>No Records Found</p>
+    {% else %}
+        <table border="1" cellspacing="0" cellpadding="8">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td><a href="/user/{{user.name}}">{{ user.name }}</a></td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.address }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
